@@ -48,8 +48,15 @@ $display_sns_on_post = get_theme_mod( 'display_sns_on_post', true );
 <?php endif; ?>
 <section class="article-body">
 	<div id="customer-message">
-		<p class="symptoms"><?php the_title();?></p>
-		<p class="person"><?php the_field('age'); ?>代<?php the_field('gender'); ?>	<?php the_field('name'); ?>さん</p>
+		<p class="symptoms">
+			<?php the_title();?>
+		</p>
+		<p class="person">
+			<?php the_field('age'); ?>
+			代
+			<?php the_field('gender'); ?>
+			<?php the_field('name'); ?>
+			さん</p>
 		<div class="flex">
 			<div class="scr_txt">
 				<div class="scroll">
@@ -61,11 +68,17 @@ $display_sns_on_post = get_theme_mod( 'display_sns_on_post', true );
 			</div>
 			<div class="scr_img">
 				<div class="scroll">
-				<div class="scroll-inner">
-					<?php if(get_field('image')):?><figure><img src="<?php the_field('image'); ?>"></figure><?php endif;?>
-					<?php if(get_field('image02')):?><figure><img src="<?php the_field('image02'); ?>"></figure><?php endif;?>
-					<?php if(get_field('image03')):?><figure><img src="<?php the_field('image03'); ?>"></figure><?php endif;?>
-				</div>
+					<div class="scroll-inner">
+						<?php if(get_field('image')):?>
+						<figure><img src="<?php the_field('image'); ?>"></figure>
+						<?php endif;?>
+						<?php if(get_field('image02')):?>
+						<figure><img src="<?php the_field('image02'); ?>"></figure>
+						<?php endif;?>
+						<?php if(get_field('image03')):?>
+						<figure><img src="<?php the_field('image03'); ?>"></figure>
+						<?php endif;?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -104,5 +117,52 @@ $display_sns_on_post = get_theme_mod( 'display_sns_on_post', true );
 <?php endwhile; ?>
 </article>
 <!--end article-->
-<?php emanon_display_pre_nex(); ?>
-<?php emanon_related_post(); ?>
+<?php
+emanon_display_pre_nex();
+$taxonomy_name = 'part'; // タクソノミーのスラッグ名を入れる
+$post_type = 'voice'; // カスタム投稿のスラッグ名を入れる
+$args = array(
+	'orderby' => 'name',
+	'hierarchical' => false
+);
+$taxonomys = get_terms( $taxonomy_name, $args );
+
+if ( !is_wp_error( $taxonomys ) && count( $taxonomys ) ):
+	foreach ( $taxonomys as $taxonomy ):
+		$url = get_term_link( $taxonomy->slug, $taxonomy_name );
+$tax_posts = get_posts( array(
+	'post_type' => $post_type,
+	'posts_per_page' => 4, // 表示させたい記事数
+	'tax_query' => array(
+		array(
+			'taxonomy' => $taxonomy_name,
+			'terms' => array( $taxonomy->slug ),
+			'field' => 'slug',
+			'include_children' => true,
+			'operator' => 'IN'
+		)
+	)
+) );
+if ( $tax_posts ) {
+	?>
+<section>
+	<h3 id="<?php echo esc_html($taxonomy->slug); ?>">
+		<a href="<?php echo $url; ?>">
+			<?php echo esc_html($taxonomy->name); ?>
+		</a>
+	</h3>
+	<ul>
+		<?php foreach($tax_posts as $tax_post): ?>
+		<li>
+			<a href="<?php echo get_permalink($tax_post->ID); ?>">
+				<?php echo get_the_title($tax_post->ID); ?>
+			</a>
+		</li>
+		<?php endforeach; wp_reset_postdata(); ?>
+	</ul>
+</section>
+<?php
+}
+endforeach;
+endif;
+?>
