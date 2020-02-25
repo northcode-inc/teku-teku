@@ -1,0 +1,258 @@
+/* 見出し */
+.article-body h3:before {
+  content: "◎ ";
+  font-size: 18px;
+}
+.article-body h3 {
+  border: 0 !important;
+  font-size: 18px !important;
+  color: red;
+  font-weight: normal !important;
+}
+/*背景色設定*/
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-light {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bg-dark {
+  background-color: rgba(61, 29, 8, 0.5) !important;
+  border-top: 1px solid #e2e5e8;
+}
+
+.bg-none {
+  background: none;
+}
+
+/*img {
+	width: 100%;
+	height: auto;
+}*/
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.orange {
+  color: #f24318;
+}
+
+#header-wrapper {
+  background-size: auto;
+  background-attachment: fixed;
+}
+
+/*ヘッダーロゴ*/
+.header-logo img {
+  height: 100%;
+  width: auto;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (max-width: 767px) {
+  .nav-fixed .header-table {
+    width: 70%;
+  }
+}
+
+/*スマホメニュー内ロゴ*/
+.modal-header-logo img {
+  width: auto;
+  height: 100%;
+}
+
+.container.header-area-height {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container.header-area-height > div {
+  float: none;
+}
+
+.container.header-area-height .col4 {
+  width: 70%;
+}
+
+/*
+.container.header-area-height .col8 {
+    width: 30%;
+}
+*/
+
+#gnav,
+.global-nav li ul li,
+.mb-horizontal-nav,
+.footer {
+  background-color: #66270a;
+}
+
+/*フッターカレンダー*/
+.xo-event-calendar {
+  font-family: inherit;
+}
+
+.xo-months,
+.xo-month-wrap,
+table.xo-month {
+  color: #fff;
+}
+
+.xo-event-calendar table {
+  background-color: transparent;
+  color: #fff;
+}
+
+.xo-event-calendar table.xo-month > caption {
+  background-color: transparent;
+  border-top: solid 1px #b5b5b5;
+  border-left: solid 1px #b5b5b5;
+  border-right: solid 1px #b5b5b5;
+  padding: 8px 0;
+  font-weight: bold;
+}
+
+.xo-event-calendar table.xo-month .month-header {
+  margin: 0;
+}
+
+.xo-event-calendar table.xo-month .month-header > span {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.xo-event-calendar table.xo-month .month-dayname td div {
+  text-align: center;
+}
+
+.xo-event-calendar table.xo-month > thead th {
+  color: unset !important;
+}
+
+.xo-event-calendar table.xo-month .month-dayname td div {
+  padding-top: 0.5em;
+}
+
+.xo-event-calendar table.xo-month .month-dayname td div.today {
+  color: #fff;
+}
+
+.xo-event-calendar table.xo-month .month-event-space {
+  height: 1em;
+}
+
+.xo-event-calendar table.xo-month button {
+  color: #fff;
+}
+
+.xo-event-calendar table.xo-month .month-dayname td div.other-month {
+  opacity: 0.8;
+}
+
+.holiday-titles {
+  display: flex;
+}
+
+.xo-event-calendar p.holiday-title:not(:first-of-type) {
+  margin-left: 1em;
+}
+
+/*twitter*/
+.timeline-TweetList {
+  display: flex;
+}
+
+.sidebar-footer-col3:nth-of-type(3) .custom-html-widget {
+  height: 440px;
+  overflow: hidden;
+}
+
+/*フッター*/
+/* .sidebar-footer-col3 {
+} */
+
+/*フッターTwitter*/
+#twitter iframe {
+  height: 400px !important;
+}
+
+/*固定ページ・記事h1*/
+.article-header h1 {
+  padding: 8px 0 8px 16px;
+  background: -webkit-repeating-linear-gradient(
+    -45deg,
+    #ebedf0,
+    #ebedf0 3px,
+    #fff 3px,
+    #fff 8px
+  );
+  background: repeating-linear-gradient(
+    -45deg,
+    #ebedf0,
+    #ebedf0 3px,
+    #fff 3px,
+    #fff 8px
+  );
+  border-top: solid 2px #66270a;
+  border-bottom: solid 2px #66270a;
+  color: #462d14;
+}
+
+/*アーカイブ*/
+.archive .col-main,
+.col-sidebar {
+  padding: 1em;
+  background-color: #fff;
+  border: solid 1px #d9e2f0;
+}
+
+/*　コメント非表示　*/
+.comment-respond {
+  margin: 32px 0;
+  display: none;
+}
+
+/* ブログ記事画像余白調整 */
+.single-post section.article-body img {
+  margin: 0;
+}
+
+/*LINEバナー（サイドバー）*/
+.widget_text #sidebar-cta {
+  padding: 0;
+  border: 0;
+  background-color: #2dbd14;
+  color: #fff;
+}
+.widget_text #sidebar-cta a,
+.widget_text #sidebar-cta a img {
+  display: block;
+  margin: 0;
+}
+.widget_text #sidebar-cta > div {
+  padding: 1em;
+}
+.widget_text #sidebar-cta p:first-of-type {
+  font-weight: bold;
+  font-size: 110%;
+}
+.widget_text #sidebar-cta span {
+  display: inline-block;
+}
+.widget_text #sidebar-cta .btn {
+  width: 100%;
+}
+.widget_text #sidebar-cta .btn a {
+  background-color: transparent;
+  border: solid 2px #fff;
+  font-weight: bold;
+}
