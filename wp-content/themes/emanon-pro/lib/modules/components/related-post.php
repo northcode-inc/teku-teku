@@ -10,28 +10,17 @@
 	$emanon_related_post_title = get_theme_mod( 'emanon_related_post_title', __( 'Related Post', 'emanon' ) );
 	$related_post_max = get_theme_mod( 'related_post_max', 4 );
 	$display_related_post_date = get_theme_mod( 'display_related_post_date', true );
-$taxonomy_slug = 'parts'; // タクソノミーのスラッグを指定
-  $post_type_slug = 'voice'; // 投稿タイプのスラッグを指定
-  $post_terms = wp_get_object_terms($post->ID, $taxonomy_slug); // タクソノミーの指定
-  if( $post_terms && !is_wp_error($post_terms)) { // 値があるときに作動
-    $terms_slug = array(); // 配列のセット
-    foreach( $post_terms as $value ){ // 配列の作成
-      $terms_slug[] = $value->slug; // タームのスラッグを配列に追加
-    }
-  }
-  $args = array(
-    'post_type' => $post_type_slug, // 投稿タイプを指定
-    'posts_per_page' => 4, // 表示件数を指定
-    'orderby' =>  'rand', // ランダムに投稿を取得
-    'post__not_in' => array($post->ID), // 現在の投稿を除外
-    'tax_query' => array( // タクソノミーパラメーターを使用
-      array(
-        'taxonomy' => $taxonomy_slug, // タームを取得タクソノミーを指定
-        'field' => 'slug', // スラッグに一致するタームを返す
-        'terms' => $terms_slug // タームの配列を指定
-      )
-    )
-  );
+	$categories = get_the_category( $post->ID );
+	$category_ID = array();
+	foreach( $categories as $category ):
+	array_push( $category_ID, $category -> cat_ID );
+	endforeach ;
+	$args = array(
+	'post__not_in' => array( $post -> ID ),
+	'posts_per_page'=> intval( $related_post_max ),
+	'category__in' => $category_ID,
+	'orderby' => 'rand',
+	);
 	$query = new WP_Query( $args );
 ?>
 
